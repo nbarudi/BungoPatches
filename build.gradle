@@ -2,21 +2,31 @@
 buildscript {
     repositories {
         maven { url "https://maven.fabricmc.net/" }
+        maven {
+            url = uri("https://repo.papermc.io/repository/maven-public/")
+        }
     }
+
 }
 
 plugins {
     id 'java'
     id 'cn.apisium.papershelled' version '1.2.1'
     id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id("io.papermc.paperweight.userdev") version "1.5.5"
 }
 
-group 'cn.apisium.example'
+group 'ca.bungo.bungopatches'
 def releaseVersion = version = System.getenv('RELEASE_VERSION') ?: '0.0.0-DEV'
+
+
+dependencies {
+    paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
+}
 
 paperShelled {
     archiveClassifier = ''
-    jarUrl = 'https://papermc.io/api/v2/projects/paper/versions/1.18.1/builds/175/downloads/paper-1.18.1-175.jar'
+    jarUrl = 'https://api.papermc.io/v2/projects/paper/versions/1.20.2/builds/318/downloads/paper-1.20.2-318.jar'
 }
 
 shadowJar {
